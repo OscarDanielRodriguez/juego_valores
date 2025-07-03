@@ -1,0 +1,113 @@
+/* Estilos generales del cuerpo de la página */
+body {
+    font-family: 'Arial', sans-serif; /* Fuente legible */
+    display: flex; /* Para centrar el contenido vertical y horizontalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    min-height: 100vh; /* Ocupar al menos el 100% del alto de la ventana */
+    margin: 0; /* Eliminar márgenes predeterminados del body */
+    background-color: #f0f2f5; /* Color de fondo suave */
+    color: #333; /* Color de texto principal */
+    line-height: 1.6; /* Espaciado entre líneas */
+}
+
+/* Estilos del contenedor principal del juego */
+.container {
+    background-color: #ffffff; /* Fondo blanco para el contenedor */
+    padding: 30px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave para efecto 3D */
+    text-align: center; /* Centrar el texto dentro del contenedor */
+    max-width: 500px; /* Ancho máximo del contenedor */
+    width: 90%; /* Ancho responsivo */
+    box-sizing: border-box; /* Incluir padding y border en el ancho total */
+}
+
+/* Estilos del título principal del juego */
+h1 {
+    color: #4CAF50; /* Color verde vibrante */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    font-size: 2.2em; /* Tamaño de fuente grande */
+}
+
+/* Estilos para el párrafo de instrucción */
+p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+/* Estilos para la palabra desordenada que se muestra */
+.palabra-mostrar {
+    font-size: 2.5em; /* Tamaño de fuente muy grande */
+    font-weight: bold; /* Negrita */
+    color: #3f51b5; /* Color azul distintivo */
+    letter-spacing: 3px; /* Espaciado entre letras */
+    margin: 25px 0; /* Espacio arriba y abajo */
+    padding: 10px 20px; /* Relleno interno */
+    background-color: #e8eaf6; /* Fondo ligero para la palabra */
+    border-radius: 8px; /* Bordes redondeados */
+    display: inline-block; /* Para que el padding y el border funcionen bien */
+}
+
+/* Estilos para el campo de entrada de texto */
+input[type="text"] {
+    width: calc(100% - 40px); /* Ancho completo menos padding */
+    padding: 15px; /* Relleno interno */
+    margin-bottom: 20px; /* Espacio debajo del input */
+    border: 2px solid #ccc; /* Borde gris */
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 1.1em; /* Tamaño de fuente */
+    box-sizing: border-box; /* Incluir padding y border en el ancho total */
+    outline: none; /* Eliminar el contorno al enfocar */
+    transition: border-color 0.3s ease; /* Transición suave para el borde */
+}
+
+input[type="text"]:focus {
+    border-color: #4CAF50; /* Cambiar color del borde al enfocar */
+}
+
+/* Estilos para los botones */
+button {
+    background-color: #4CAF50; /* Fondo verde */
+    color: white; /* Texto blanco */
+    padding: 12px 25px; /* Relleno interno */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 1.1em; /* Tamaño de fuente */
+    cursor: pointer; /* Cursor de mano al pasar por encima */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+    margin: 0 5px; /* Pequeño margen entre botones */
+}
+
+button:hover {
+    background-color: #45a049; /* Verde más oscuro al pasar el ratón */
+    transform: translateY(-2px); /* Pequeño levantamiento al pasar el ratón */
+}
+
+button:active {
+    transform: translateY(0); /* Vuelve a su posición normal al hacer clic */
+}
+
+/* Estilos específicos para el botón "Nueva Palabra" */
+#btn-nueva-palabra {
+    background-color: #3f51b5; /* Fondo azul */
+}
+
+#btn-nueva-palabra:hover {
+    background-color: #303f9f; /* Azul más oscuro al pasar el ratón */
+}
+
+/* Estilos para los mensajes de resultado (correcto/incorrecto) */
+#mensaje-resultado {
+    margin-top: 20px; /* Espacio arriba del mensaje */
+    font-weight: bold; /* Negrita */
+    font-size: 1.2em; /* Tamaño de fuente más grande */
+    min-height: 1.5em; /* Asegura que el espacio esté reservado */
+}
+
+/* Estilos para la puntuación */
+#puntuacion {
+    font-weight: bold; /* Negrita */
+    color: #e91e63; /* Color de puntuación distintivo */
+    font-size: 1.3em; /* Tamaño de fuente más grande */
+}

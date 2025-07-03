@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Ordenar Letras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>¡Ordena las Letras!</h1>
+        <p>Adivina la palabra desordenada:</p>
+        <div id="palabra-desordenada" class="palabra-mostrar"></div>
+        
+        <input type="text" id="input-respuesta" placeholder="Escribe tu respuesta aquí">
+        <button id="btn-comprobar">Comprobar</button>
+        
+        <p id="mensaje-resultado"></p>
+        <p>Puntuación: <span id="puntuacion">0</span></p>
+
+        <button id="btn-nueva-palabra" style="display: none;">Nueva Palabra</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
