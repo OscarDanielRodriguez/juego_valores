@@ -1,110 +1,148 @@
-// --- Elementos del DOM (Document Object Model) ---
-// Obtenemos referencias a los elementos HTML que necesitamos manipular
+// --- Elementos del DOM ---
 const palabraDesordenadaDisplay = document.getElementById('palabra-desordenada');
 const inputRespuesta = document.getElementById('input-respuesta');
 const btnComprobar = document.getElementById('btn-comprobar');
 const mensajeResultado = document.getElementById('mensaje-resultado');
 const puntuacionDisplay = document.getElementById('puntuacion');
 const btnNuevaPalabra = document.getElementById('btn-nueva-palabra');
+const vidasDisplay = document.getElementById('vidas-display');
+const timerDisplay = document.getElementById('timer-display');
+const btnReiniciar = document.getElementById('btn-reiniciar');
 
 // --- Variables del Juego ---
-let palabrasPosibles = [
-    "elefante",
-    "computadora",
-    "bicicleta",
-    "sol",
-    "agua",
-    "programacion",
-    "javascript",
-    "desarrollo",
-    "internet",
-    "navegador"
-];
-let palabraActual = ''; // Almacenará la palabra original que el jugador debe adivinar
+let palabrasPosibles = ["estipulacion", "devengar", "patrono", "plaza", "prestacion", "otorgamiento", "horario", "beneficios", "derechos", "obligaciones","reglamento","inciso","estipulacion","avenimiento"];
+let palabraActual = '';
 let puntuacion = 0;
+let vidas = 3;
+let tiempoRestante = 30;
+let timerInterval;
 
 // --- Funciones del Juego ---
 
-/**
- * Selecciona una palabra aleatoria de la lista de palabras posibles.
- * @returns {string} La palabra seleccionada.
- */
 function seleccionarPalabraAleatoria() {
     const indiceAleatorio = Math.floor(Math.random() * palabrasPosibles.length);
     return palabrasPosibles[indiceAleatorio];
 }
 
-/**
- * Desordena las letras de una palabra.
- * @param {string} palabra La palabra a desordenar.
- * @returns {string} La palabra con las letras desordenadas.
- */
 function desordenarPalabra(palabra) {
-    let letras = palabra.split(''); // Convierte la palabra en un arreglo de letras
+    let letras = palabra.split('');
     for (let i = letras.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [letras[i], letras[j]] = [letras[j], letras[i]]; // Intercambia las letras
+        [letras[i], letras[j]] = [letras[j], letras[i]];
     }
-    return letras.join(''); // Une el arreglo de letras de nuevo en una cadena
+    // Asegurarse de que la palabra desordenada no sea igual a la original
+    const palabraDesordenada = letras.join('');
+    return palabraDesordenada === palabra ? desordenarPalabra(palabra) : palabraDesordenada;
 }
 
-/**
- * Inicia una nueva ronda del juego.
- */
 function iniciarNuevaRonda() {
-    palabraActual = seleccionarPalabraAleatoria(); // Selecciona una palabra
-    const palabraDesordenada = desordenarPalabra(palabraActual); // Desordena la palabra
+    clearInterval(timerInterval); // Limpiar cualquier timer anterior
 
-    palabraDesordenadaDisplay.textContent = palabraDesordenada.toUpperCase(); // Muestra la palabra desordenada en mayúsculas
-    inputRespuesta.value = ''; // Limpia el campo de respuesta
-    mensajeResultado.textContent = ''; // Limpia el mensaje de resultado
+    if (vidas <= 0) {
+        mostrarPantallaGameOver();
+        return;
+    }
 
-    // Asegura que los botones estén en el estado correcto
-    btnComprobar.style.display = 'inline-block'; // Muestra el botón de comprobar
-    btnNuevaPalabra.style.display = 'none'; // Oculta el botón de nueva palabra
-    inputRespuesta.disabled = false; // Habilita el input
-    inputRespuesta.focus(); // Pone el foco en el input para que el usuario pueda escribir de inmediato
+    // Resetear visuales y estado para la nueva ronda
+    mensajeResultado.textContent = '';
+    inputRespuesta.value = '';
+    inputRespuesta.disabled = false;
+    inputRespuesta.focus();
+    btnComprobar.style.display = 'inline-block';
+    btnNuevaPalabra.style.display = 'none';
+    btnReiniciar.style.display = 'none';
+    timerDisplay.style.color = '#d62828'; // Color por defecto del timer
+
+    // Seleccionar y mostrar nueva palabra
+    palabraActual = seleccionarPalabraAleatoria();
+    const palabraDesordenada = desordenarPalabra(palabraActual);
+    palabraDesordenadaDisplay.textContent = palabraDesordenada.toUpperCase();
+
+    // Iniciar el temporizador
+    tiempoRestante = 30;
+    timerDisplay.textContent = tiempoRestante;
+    timerInterval = setInterval(actualizarTimer, 1000);
 }
 
-/**
- * Comprueba la respuesta del jugador.
- */
-function comprobarRespuesta() {
-    const respuestaUsuario = inputRespuesta.value.toLowerCase().trim(); // Obtiene la respuesta del usuario, la convierte a minúsculas y elimina espacios al inicio/final
+function actualizarTimer() {
+    tiempoRestante--;
+    timerDisplay.textContent = tiempoRestante;
 
-    if (respuestaUsuario === palabraActual) {
-        mensajeResultado.textContent = '¡Correcto! 🎉';
-        mensajeResultado.style.color = 'green';
-        puntuacion++;
-        puntuacionDisplay.textContent = puntuacion;
-        btnComprobar.style.display = 'none'; // Oculta el botón de comprobar
-        btnNuevaPalabra.style.display = 'inline-block'; // Muestra el botón de nueva palabra
-        inputRespuesta.disabled = true; // Deshabilita el input
-    } else if (respuestaUsuario === '') {
+    if (tiempoRestante < 10) {
+        timerDisplay.style.color = '#d62828'; // Rojo cuando queda poco tiempo
+    }
+
+    if (tiempoRestante <= 0) {
+        clearInterval(timerInterval);
+        vidas--;
+        vidasDisplay.textContent = vidas;
+        mensajeResultado.textContent = `¡Tiempo agotado! La palabra era: "${palabraActual}".`;
+        mensajeResultado.style.color = 'red';
+        finalizarRonda();
+    }
+}
+
+function comprobarRespuesta() {
+    const respuestaUsuario = inputRespuesta.value.toLowerCase().trim();
+
+    if (respuestaUsuario === '') {
         mensajeResultado.textContent = 'Por favor, escribe una palabra.';
         mensajeResultado.style.color = 'orange';
+        return;
+    }
+    
+    clearInterval(timerInterval); // Detener el timer al responder
+
+    if (respuestaUsuario === palabraActual) {
+        puntuacion++;
+        puntuacionDisplay.textContent = puntuacion;
+        mensajeResultado.textContent = '¡Correcto! 🎉';
+        mensajeResultado.style.color = 'green';
     } else {
-        mensajeResultado.textContent = `Incorrecto. Intenta de nuevo.`;
+        vidas--;
+        vidasDisplay.textContent = vidas;
+        mensajeResultado.textContent = `Incorrecto. La palabra era: "${palabraActual}".`;
         mensajeResultado.style.color = 'red';
-        // Podríamos añadir una penalización de puntos aquí si quisiéramos
+    }
+    finalizarRonda();
+}
+
+function finalizarRonda() {
+    inputRespuesta.disabled = true;
+    btnComprobar.style.display = 'none';
+
+    if (vidas <= 0) {
+        mostrarPantallaGameOver();
+    } else {
+        btnNuevaPalabra.style.display = 'inline-block';
     }
 }
 
-// --- Event Listeners (Detectores de Eventos) ---
+function mostrarPantallaGameOver() {
+    palabraDesordenadaDisplay.textContent = 'FIN';
+    mensajeResultado.innerHTML = `¡Juego Terminado!<br>Puntuación Final: ${puntuacion}`;
+    mensajeResultado.style.color = '#001f3f';
+    btnComprobar.style.display = 'none';
+    btnNuevaPalabra.style.display = 'none';
+    btnReiniciar.style.display = 'inline-block';
+    inputRespuesta.disabled = true;
+}
 
-// Cuando se haga clic en el botón "Comprobar"
+function reiniciarJuego() {
+    puntuacion = 0;
+    vidas = 3;
+    puntuacionDisplay.textContent = puntuacion;
+    vidasDisplay.textContent = vidas;
+    iniciarNuevaRonda();
+}
+
+// --- Event Listeners ---
 btnComprobar.addEventListener('click', comprobarRespuesta);
-
-// Cuando se presione la tecla "Enter" en el campo de respuesta
 inputRespuesta.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
         comprobarRespuesta();
     }
 });
-
-// Cuando se haga clic en el botón "Nueva Palabra"
 btnNuevaPalabra.addEventListener('click', iniciarNuevaRonda);
-
-// --- Inicio del Juego ---
-// Llama a esta función cuando la página se carga para iniciar la primera ronda
-document.addEventListener('DOMContentLoaded', iniciarNuevaRonda);
+btnReiniciar.addEventListener('click', reiniciarJuego);
+document.addEventListener('DOMContentLoaded', reiniciarJuego);

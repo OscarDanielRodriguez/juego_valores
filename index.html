@@ -9,16 +9,24 @@
 <body>
     <div class="container">
         <h1>¡Ordena las Letras!</h1>
-        <p>Adivina la palabra desordenada:</p>
+        <p>Adivina la palabra antes de que se acabe el tiempo:</p>
+        
+        <div class="stats-container">
+            <p>Vidas: <span id="vidas-display">3</span></p>
+            <p>Tiempo: <span id="timer-display">30</span>s</p>
+        </div>
+
         <div id="palabra-desordenada" class="palabra-mostrar"></div>
         
         <input type="text" id="input-respuesta" placeholder="Escribe tu respuesta aquí">
-        <button id="btn-comprobar">Comprobar</button>
+        <div class="botones-container">
+            <button id="btn-comprobar">Comprobar</button>
+            <button id="btn-nueva-palabra" style="display: none;">Nueva Palabra</button>
+            <button id="btn-reiniciar" style="display: none;">Reiniciar Juego</button>
+        </div>
         
         <p id="mensaje-resultado"></p>
         <p>Puntuación: <span id="puntuacion">0</span></p>
-
-        <button id="btn-nueva-palabra" style="display: none;">Nueva Palabra</button>
     </div>
 
     <script src="script.js"></script>

@@ -1,113 +1,135 @@
 /* Estilos generales del cuerpo de la página */
 body {
-    font-family: 'Arial', sans-serif; /* Fuente legible */
-    display: flex; /* Para centrar el contenido vertical y horizontalmente */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-    min-height: 100vh; /* Ocupar al menos el 100% del alto de la ventana */
-    margin: 0; /* Eliminar márgenes predeterminados del body */
-    background-color: #f0f2f5; /* Color de fondo suave */
-    color: #333; /* Color de texto principal */
-    line-height: 1.6; /* Espaciado entre líneas */
+    font-family: 'Courier New', Courier, monospace; /* Fuente tipo terminal para el tema */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #000D09; /* Fondo: Negro verdoso de la paleta */
+    color: #A3F2A0; /* Color de texto principal: Verde claro */
+    line-height: 1.6;
 }
 
 /* Estilos del contenedor principal del juego */
 .container {
-    background-color: #ffffff; /* Fondo blanco para el contenedor */
-    padding: 30px; /* Espaciado interno */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave para efecto 3D */
-    text-align: center; /* Centrar el texto dentro del contenedor */
-    max-width: 500px; /* Ancho máximo del contenedor */
-    width: 90%; /* Ancho responsivo */
-    box-sizing: border-box; /* Incluir padding y border en el ancho total */
+    background-color: #055941; /* Fondo del contenedor: Verde oscuro */
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #04BF7B;
+    box-shadow: 0 4px 20px rgba(4, 191, 123, 0.2); /* Sombra con el color de acento */
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    box-sizing: border-box;
 }
 
 /* Estilos del título principal del juego */
 h1 {
-    color: #4CAF50; /* Color verde vibrante */
-    margin-bottom: 20px; /* Espacio debajo del título */
-    font-size: 2.2em; /* Tamaño de fuente grande */
+    color: #FFFFFF; /* Blanco para alto contraste */
+    margin-bottom: 20px;
+    font-size: 2.2em;
+    text-transform: uppercase;
 }
 
-/* Estilos para el párrafo de instrucción */
-p {
-    margin-bottom: 15px;
-    font-size: 1.1em;
+/* Estilos para el contenedor de estadísticas (vidas y tiempo) */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+}
+
+#vidas-display, #timer-display {
+    color: #04BF7B; /* Color de acento: Verde brillante */
 }
 
 /* Estilos para la palabra desordenada que se muestra */
 .palabra-mostrar {
-    font-size: 2.5em; /* Tamaño de fuente muy grande */
-    font-weight: bold; /* Negrita */
-    color: #3f51b5; /* Color azul distintivo */
-    letter-spacing: 3px; /* Espaciado entre letras */
-    margin: 25px 0; /* Espacio arriba y abajo */
-    padding: 10px 20px; /* Relleno interno */
-    background-color: #e8eaf6; /* Fondo ligero para la palabra */
-    border-radius: 8px; /* Bordes redondeados */
-    display: inline-block; /* Para que el padding y el border funcionen bien */
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #000D09; /* Texto oscuro para contraste */
+    letter-spacing: 3px;
+    margin: 25px 0;
+    padding: 10px 20px;
+    background-color: #04BF7B; /* Fondo de acento: Verde brillante */
+    border-radius: 8px;
+    display: inline-block;
 }
 
 /* Estilos para el campo de entrada de texto */
 input[type="text"] {
-    width: calc(100% - 40px); /* Ancho completo menos padding */
-    padding: 15px; /* Relleno interno */
-    margin-bottom: 20px; /* Espacio debajo del input */
-    border: 2px solid #ccc; /* Borde gris */
-    border-radius: 8px; /* Bordes redondeados */
-    font-size: 1.1em; /* Tamaño de fuente */
-    box-sizing: border-box; /* Incluir padding y border en el ancho total */
-    outline: none; /* Eliminar el contorno al enfocar */
-    transition: border-color 0.3s ease; /* Transición suave para el borde */
+    width: calc(100% - 40px);
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #04BF7B; /* Borde con color de acento */
+    background-color: #000D09; /* Fondo oscuro */
+    color: #A3F2A0; /* Texto verde claro */
+    border-radius: 8px;
+    font-size: 1.1em;
+    box-sizing: border-box;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 input[type="text"]:focus {
-    border-color: #4CAF50; /* Cambiar color del borde al enfocar */
+    box-shadow: 0 0 10px #04BF7B; /* Efecto de brillo al enfocar */
+}
+
+/* Contenedor para centrar los botones */
+.botones-container {
+    margin-bottom: 15px;
 }
 
 /* Estilos para los botones */
 button {
-    background-color: #4CAF50; /* Fondo verde */
-    color: white; /* Texto blanco */
-    padding: 12px 25px; /* Relleno interno */
-    border: none; /* Sin borde */
-    border-radius: 8px; /* Bordes redondeados */
-    font-size: 1.1em; /* Tamaño de fuente */
-    cursor: pointer; /* Cursor de mano al pasar por encima */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
-    margin: 0 5px; /* Pequeño margen entre botones */
+    background-color: #04BF7B; /* Fondo de acento: Verde brillante */
+    color: #000D09; /* Texto oscuro */
+    font-weight: bold;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
 }
 
 button:hover {
-    background-color: #45a049; /* Verde más oscuro al pasar el ratón */
-    transform: translateY(-2px); /* Pequeño levantamiento al pasar el ratón */
+    background-color: #A3F2A0; /* Verde más claro al pasar el ratón */
+    transform: translateY(-2px);
 }
 
 button:active {
-    transform: translateY(0); /* Vuelve a su posición normal al hacer clic */
+    transform: translateY(0);
 }
 
-/* Estilos específicos para el botón "Nueva Palabra" */
-#btn-nueva-palabra {
-    background-color: #3f51b5; /* Fondo azul */
+/* Estilos para el botón de reiniciar (usa el azul de la paleta como color distintivo) */
+#btn-reiniciar {
+    background-color: #8BADD9; /* Azul de la paleta */
+    color: #000D09;
 }
 
-#btn-nueva-palabra:hover {
-    background-color: #303f9f; /* Azul más oscuro al pasar el ratón */
+#btn-reiniciar:hover {
+    background-color: #A3F2A0;
 }
 
 /* Estilos para los mensajes de resultado (correcto/incorrecto) */
 #mensaje-resultado {
-    margin-top: 20px; /* Espacio arriba del mensaje */
-    font-weight: bold; /* Negrita */
-    font-size: 1.2em; /* Tamaño de fuente más grande */
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
     min-height: 1.5em; /* Asegura que el espacio esté reservado */
 }
 
-/* Estilos para la puntuación */
+/* Estilos para la puntuación (usa el azul de la paleta) */
 #puntuacion {
-    font-weight: bold; /* Negrita */
-    color: #e91e63; /* Color de puntuación distintivo */
-    font-size: 1.3em; /* Tamaño de fuente más grande */
+    font-weight: bold;
+    color: #8BADD9;
+    font-size: 1.3em;
 }
