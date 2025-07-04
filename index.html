@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>¡Ordena las Letras!</h1>
+        <h1>¡CodeWord!</h1>
         <p>Adivina la palabra antes de que se acabe el tiempo:</p>
         
         <div class="stats-container">
@@ -18,9 +18,12 @@
 
         <div id="palabra-desordenada" class="palabra-mostrar"></div>
         
+        <p id="pista-display" class="pista-texto" style="display: none;"></p>
+
         <input type="text" id="input-respuesta" placeholder="Escribe tu respuesta aquí">
         <div class="botones-container">
             <button id="btn-comprobar">Comprobar</button>
+            <button id="btn-pista" style="display: none;">Pista</button>
             <button id="btn-nueva-palabra" style="display: none;">Nueva Palabra</button>
             <button id="btn-reiniciar" style="display: none;">Reiniciar Juego</button>
         </div>

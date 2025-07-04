@@ -59,6 +59,19 @@ h1 {
     display: inline-block;
 }
 
+/* --- ESTILO PARA LA PISTA --- */
+.pista-texto {
+    background-color: rgba(0, 13, 9, 0.5);
+    border: 1px dashed #A3F2A0;
+    padding: 10px;
+    margin: 0 auto 20px auto;
+    max-width: 90%;
+    border-radius: 5px;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+
 /* Estilos para el campo de entrada de texto */
 input[type="text"] {
     width: calc(100% - 40px);
@@ -109,14 +122,17 @@ button:active {
     transform: translateY(0);
 }
 
-/* Estilos para el botón de reiniciar (usa el azul de la paleta como color distintivo) */
-#btn-reiniciar {
-    background-color: #8BADD9; /* Azul de la paleta */
+/* Estilo para el botón de pista (usa el azul de la paleta) */
+#btn-pista {
+    background-color: #8BADD9;
     color: #000D09;
 }
 
-#btn-reiniciar:hover {
-    background-color: #A3F2A0;
+
+/* Estilos para el botón de reiniciar (usa el azul de la paleta como color distintivo) */
+#btn-reiniciar {
+    background-color: #d1495b; /* Un rojo que combina con la paleta */
+    color: #FFFFFF;
 }
 
 /* Estilos para los mensajes de resultado (correcto/incorrecto) */
